@@ -19,8 +19,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView  # Исправлен импорт
+from django.urls import path
+from .health import health_check
 
 urlpatterns = [
+    path('health/', health_check, name='health_check'),
     path('admin/', admin.site.urls),
     path('api/', include('bots.urls')),  # Используйте ваше реальное приложение (bots)
     path('', TemplateView.as_view(template_name='index.html'), name='home'),  # Главная страница
